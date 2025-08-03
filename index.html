@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Alankar Tiles</title>
+</head>
+<body>
+  <h1>Welcome to Alankar Tiles</h1>
+  <p id="apiResponse">Loading...</p>
+
+  <script>
+    fetch("http://localhost:3000")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("apiResponse").innerText = data;
+      })
+      .catch(error => {
+        document.getElementById("apiResponse").innerText = "Error connecting to backend!";
+        console.error("Error:", error);
+      });
+  </script>
+</body>
+</html>
