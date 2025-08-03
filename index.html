@@ -1,28 +1,41 @@
-<h2>Login</h2>
-<input type="text" id="username" placeholder="Username">
-<input type="password" id="password" placeholder="Password">
-<button onclick="login()">Login</button>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login - Alankar Tiles</title>
+</head>
+<body>
+  <h2>Login</h2>
+  <input type="text" id="username" placeholder="Username" />
+  <input type="password" id="password" placeholder="Password" />
+  <button onclick="login()">Login</button>
 
-<script>
-  function login() {
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
+  <script>
+    function login() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
 
-    fetch("https://alankar-tiles-bacjend.onrender.com/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ username, password })
-    })
-    .then(res => res.json())
-    .then(data => {
-      alert("Login successful!");
-      console.log(data);
-    })
-    .catch(err => {
-      alert("Login failed!");
-      console.error(err);
-    });
-  }
-</script>
+      fetch('https://alankar-tiles-bacjend.onrender.com/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, password })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          alert("Login successful!");
+          // Redirect to dashboard and pass role in URL
+          window.location.href = `dashboard.html?role=${data.role}`;
+        } else {
+          alert("Login failed: " + data.message);
+        }
+      })
+      .catch(err => {
+        alert("Error connecting to backend.");
+        console.error(err);
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,27 +1,22 @@
-<!-- dashboard.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Alankar Tiles - Dashboard</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 50px;
-      background-color: #f4f4f4;
-    }
-    h1 {
-      color: #333;
-    }
-    p {
-      font-size: 18px;
-      margin-top: 20px;
-    }
-  </style>
+  <title>Dashboard - Alankar Tiles</title>
 </head>
 <body>
-  <h1>Welcome to Alankar Tiles Dashboard</h1>
-  <p>You are successfully logged in.</p>
+  <h2>Welcome to Dashboard</h2>
+  <p id="role-info"></p>
+
+  <script>
+    // Get role from query param
+    const urlParams = new URLSearchParams(window.location.search);
+    const role = urlParams.get('role');
+
+    if (role) {
+      document.getElementById('role-info').innerText = `Logged in as: ${role}`;
+    } else {
+      document.getElementById('role-info').innerText = `No role found (login may have failed)`;
+    }
+  </script>
 </body>
 </html>
