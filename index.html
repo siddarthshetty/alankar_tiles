@@ -1,29 +1,28 @@
-<!-- HTML -->
+<h2>Login</h2>
 <input type="text" id="username" placeholder="Username">
 <input type="password" id="password" placeholder="Password">
 <button onclick="login()">Login</button>
 
 <script>
-function login() {
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
+  function login() {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
 
-  fetch("https://alankar-tiles-bacjend.onrender.com/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ username, password })
-  })
-  .then(response => response.json())
-  .then(data => {
-    alert("Login successful!");
-    console.log(data);
-    // Redirect or show next screen here
-  })
-  .catch(error => {
-    alert("Login failed!");
-    console.error(error);
-  });
-}
+    fetch("https://alankar-tiles-bacjend.onrender.com/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ username, password })
+    })
+    .then(res => res.json())
+    .then(data => {
+      alert("Login successful!");
+      console.log(data);
+    })
+    .catch(err => {
+      alert("Login failed!");
+      console.error(err);
+    });
+  }
 </script>
