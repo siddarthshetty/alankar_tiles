@@ -1,22 +1,29 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Alankar Tiles</title>
-</head>
-<body>
-  <h1>Welcome to Alankar Tiles</h1>
-  <p id="apiResponse">Loading...</p>
+<!-- HTML -->
+<input type="text" id="username" placeholder="Username">
+<input type="password" id="password" placeholder="Password">
+<button onclick="login()">Login</button>
 
-  <script>
-    fetch("https://alankar-tiles-bacjend.onrender.com/login")
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById("apiResponse").innerText = data;
-      })
-      .catch(error => {
-        document.getElementById("apiResponse").innerText = "Error connecting to backend!";
-        console.error("Error:", error);
-      });
-  </script>
-</body>
-</html>
+<script>
+function login() {
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+
+  fetch("https://alankar-tiles-bacjend.onrender.com/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ username, password })
+  })
+  .then(response => response.json())
+  .then(data => {
+    alert("Login successful!");
+    console.log(data);
+    // Redirect or show next screen here
+  })
+  .catch(error => {
+    alert("Login failed!");
+    console.error(error);
+  });
+}
+</script>
